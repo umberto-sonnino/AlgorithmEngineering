@@ -56,5 +56,5 @@ make test20000: measure transposition times for a 20000x20000(~1.5GB) file with 
 make test30000: file ~3.4GB and b=2500,5000,10000,15000
 and so on.
 
-The tests must conducted in order to have a file that is bigger or slightly smaller than the current machine physical memory. The test must be conduceted to produce results that reflect real IO performance, avoiding buffered reads into RAM. If the test runs in RAM, the results won't be significant.
-Moroever modify the b parameters according once again to the system's physical memory, in order to test appropriately without incurring into disk swapping for the block. If needed modify the b sizes, with the only requirement that n must be a multiple of b.
+The tests must conducted in order to have a file that is bigger or slightly smaller than the current machine physical memory. The aim is to produce results that reflect real IO performance, avoiding buffered reads into RAM. If the test runs in RAM, the results won't be significant.
+Moreover modify the b parameters according once again to the system's physical memory, in order to test appropriately without incurring into disk swapping for the block. If needed modify the b sizes, with the only requirement that n must be a multiple of b.
