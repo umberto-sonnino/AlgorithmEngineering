@@ -1,0 +1,36 @@
+CC = gcc
+DEBUG = -g
+H = stack.h
+CFLAGS = -Wall -c $(DEBUG)
+LFLAGS = -Wall $(DEBUG)
+
+stack-array-O0: stack-array.o 
+	$(CC) $(LFLAGS) stack-test.c stack-array.o -o stack-array-O0
+stack-list-O0: stack-list.o
+	$(CC) $(LFLAGS) stack-test.c stack-list.o -o stack-list-O0
+stack-unrolled-list-O0: stack-unrolled-list.o
+	$(CC) $(LFLAGS) stack-test.c stack-unrolled-list.o -o stack-unrolled-list-O0
+
+stack-array-perf-O0: stack-array.o
+	$(CC) $(LFLAGS) stack-perf.c stack-array.o -o stack-array-perf-O0
+stack-list-perf-O0: stack-list.o
+	$(CC) $(LFLAGS) stack-perf.c stack-list.o -o stack-list-perf-O0
+stack-unrolled-perf-O0: stack-unrolled-list.o
+	$(CC) $(LFLAGS) stack-perf.c stack-unrolled-list.o -o stack-unrolled-perf-O0
+
+stack-array-perf-O3: stack-array.o
+	$(CC) $(LFLAGS) stack-perf.c stack-array.o -O3 -o stack-array-perf-O3
+stack-list-perf-O3: stack-list.o
+	$(CC) $(LFLAGS) stack-perf.c stack-list.o -O3 -o stack-list-perf-O3
+stack-unrolled-perf-O3: stack-unrolled-list.o
+	$(CC) $(LFLAGS) stack-perf.c stack-unrolled-list.o -O3 -o stack-unrolled-perf-O3
+
+all: stack-array-O0 stack-list-O0 stack-unrolled-list-O0 stack-list-perf-O0 stack-array-perf-O0 stack-unrolled-perf-O0 stack-array-perf-O3 stack-list-perf-O3 stack-unrolled-perf-O3
+clean:
+	\rm *.o mystackarray mystacklist mystackunrolled mystacklistperf mystackarrayperf mystackunrolledperf
+stack-array.o: stack.h stack-array.c stack-test.c
+	$(CC) $(CFLAGS) stack-array.c stack-test.c
+stack-list.o: stack.h stack-list.c
+	$(CC) $(CFLAGS) stack-list.c
+stack-unrolled-list.o: stack.h stack-unrolled-list.c
+	$(CC) $(CFLAGS) stack-unrolled-list.c

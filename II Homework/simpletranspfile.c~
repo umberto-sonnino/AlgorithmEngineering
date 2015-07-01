@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+//sezione di codice per trasporre una qualunque matrice di int
+//letta da file in row-major
+
+int main(){
+int i, b, temp, j, size;
+int *matrix;
+FILE *fp;
+
+b = 9;
+size = sqrt(b);
+matrix = malloc(b*sizeof(int));
+fp = fopen("3x3.mat", "r+");
+fread(matrix, sizeof(matrix), b, fp);
+
+//tentiamo semplicemente prima di leggere il contenuto del file e di scriverlo su terminale
+for(i = 0; i<b;i++){
+	if(i%3 == 0)
+		printf("\n");
+	printf("%d ", matrix[i]);
+}
+	
+//~ per trasporre questa matrice la stampa dovra' essere
+//~ 0 3 6 
+//~ 1 4 7
+//~ 2 5 8
+printf("\n Inizia la trasposizione...\n");
+for(i = 0; i<=size-2;i++)
+	for(j=i+1;j<=size-1;j++){
+		temp = matrix[i*size+j];
+		matrix[i*size+j] = matrix[j*size+i];
+		matrix[j*size+i] = temp;
+	}
+
+for(i = 0; i<b;i++){
+	if(i%3 == 0)
+		printf("\n");
+	printf("%d ", matrix[i]);
+}
+//~ printf("\n");
+//~ for(i = 0; i<4;i++){
+	//~ for(j=0;j<4;j++){
+		//~ printf("%d ", matrix[i][j]);
+	//~ }
+	//~ printf("\n");
+//~ }
+
+return 0;
+
+}
+
