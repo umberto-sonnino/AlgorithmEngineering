@@ -26,7 +26,9 @@ stack-perf.c takes as input a number n and a seed for the random number generato
 - deletion of the stack with removal of all its elements 
  
 Time of execution has been checked:
+
 > gcc stack-perf.c stack-list.c -o stack-list-perf-O0
+
 > time ./stack-list-perf-O0 10000000 971
 
 A makefile is also present to satisfy the following:
